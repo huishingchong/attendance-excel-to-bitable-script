@@ -1,2 +1,2 @@
-# attendance-excel-vba
-Excel VBA to extract clock-in clock-out records of CMI staff and format to integrate to Feishu Board (OA System).
+# attendance-excel-to-bitable-script
+Script for Attendance records Excel to easily convert and integrate to Feishu Board (OA System).
