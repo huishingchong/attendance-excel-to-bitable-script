@@ -1,0 +1,137 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.importing {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.importing span {
+  margin-top: 10px;
+}
+
+.selectFile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.tableViewContainer {
+  width: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+  height: 280px;
+}
+
+.tableViewContainer::-webkit-scrollbar {
+  width: 11px;
+  height: 12px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.tableViewContainer::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+.tableViewContainer::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  background: transparent;
+  background-clip: padding-box;
+  border-radius: 6px;
+  min-height: 24px;
+}
+
+.tableViewContainer::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.tableViewContainer:hover::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  background: rgba(31, 35, 41, 0.3);
+  background-clip: padding-box;
+}
+
+.tableViewContainer:hover::-webkit-scrollbar-thumb:hover {
+  background: rgba(31, 35, 41, 0.6);
+  background-clip: content-box;
+}
+
+.tableViewContainer .semi-table-thead > .semi-table-row > .semi-table-row-head {
+  padding: 2px;
+  text-align: center;
+}
+
+.tableViewContainer .semi-table-tbody > .semi-table-row > .semi-table-row-cell {
+  padding: 2px;
+  text-align: center;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.previewText {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.selectTableText {
+  margin-right: 10px;
+}
+
+.table {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
