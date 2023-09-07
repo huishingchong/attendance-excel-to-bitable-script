@@ -79,10 +79,6 @@ async function readExcel(fileList: File[]): Promise<ExcelDataInfo | null> {
         const ws = XLSX.utils.sheet_to_json<{ [key: string]: string }>(
           workbook.Sheets[name], { raw: false }
         );
-        //         const ws = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], { 
-        //   defval: '', raw: false
-        // })
-        //{ raw: false}
 
         const fields = [];
         for (let key in ws[0]) {
@@ -164,17 +160,19 @@ Clock in & out: FieldType.Text
 Calculated hours: FieldType.Number
 The rest: FieldType.Text
 **/
-  // function getFieldType(fieldName: string): FieldType | FieldType.Text {
-  //   let f = fieldName.toLowerCase()
-  //   if (f == "date") {
-  //     return FieldType.Text
-  //   } else if (f == "person") {
-  //     return FieldType.User
-  //   } else if (f == "calculated hours") {
-  //     return FieldType.Number
-  //   }
-  //   else return FieldType.Text;
-  // }
+
+  //function currently not used: returns field type required on base for column in Excel
+  function getFieldType(fieldName: string): FieldType {
+    let f = fieldName.toLowerCase()
+    if (f == "date") {
+      return FieldType.Text
+    } else if (f == "person") {
+      return FieldType.User
+    } else if (f == "calculated hours") {
+      return FieldType.Number
+    }
+    else return FieldType.Text;
+  }
 
   for (let i = 1; i < fields.length; i++) {
     var n = fields[i].name;
