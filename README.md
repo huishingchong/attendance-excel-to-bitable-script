@@ -1,5 +1,6 @@
 # attendance-excel-to-bitable-script
 Script for Attendance records Excel to easily convert and integrate to Feishu Board (OA System). 
+This script allows you to transfer records within your Excel sheet to Feishu Base table, saving string formatting, so it is easier when converting field types and retaining data.
 
 On Replit 
 
