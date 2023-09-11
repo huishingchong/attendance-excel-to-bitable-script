@@ -17,6 +17,7 @@ import * as XLSX from "xlsx";
 import Column from "@douyinfe/semi-ui/lib/es/table/Column";
 import Text from "@douyinfe/semi-ui/lib/es/typography/text";
 
+//Function returns current table and view
 async function getActiveTableAndView() {
   const selection = await bitable.base.getSelection();
   if (!selection.tableId) {
@@ -52,6 +53,7 @@ export interface ExcelDataInfo {
   sheets: SheetInfo[];
 }
 
+//Function reads Excel file supplied and convert to JSON
 async function readExcel(fileList: File[]): Promise<ExcelDataInfo | null> {
   const res: ExcelDataInfo = {} as ExcelDataInfo;
   const files = fileList;
@@ -105,6 +107,7 @@ async function readExcel(fileList: File[]): Promise<ExcelDataInfo | null> {
   return new Promise((r) => (resolve = r));
 }
 
+//Function fills Base table with Excel records
 async function importTable(
   table: IWidgetTable,
   view: IWidgetView,
@@ -116,7 +119,7 @@ async function importTable(
 
   const firstField = fieldMetaList.shift();
   if (!firstField) {
-    Toast.error("导入失败，数据表异常. Empty excel sheet supplied.");
+    Toast.error("导入失败，数据表异常. Failed. Base Table needs a field.");
     return;
   }
 
@@ -344,7 +347,7 @@ export function App() {
               title="确定要导入吗？Confirm start?"
               content={
                 <div>
-                  导入后将覆盖{" "}
+                  导入后将覆盖 This will replace {" "}
                   <span style={{ fontWeight: 700, color: "#000" }}>
                     {activeTableInfo.tableName}
                   </span>{" "}
