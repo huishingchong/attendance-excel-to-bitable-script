@@ -61,7 +61,7 @@ async function readExcel(fileList: File[]): Promise<ExcelDataInfo | null> {
   if (files.length <= 0) {
     return null;
   } else if (!/\.(xls|xlsx)$/.test(files[0].name.toLowerCase())) {
-    Toast.warning("上传格式不正确，请上传 xls 或者 xlsx 格式");
+    Toast.warning("上传格式不正确，请上传 xls 或者 xlsx 格式. File type uploaded is incorrect. Require: xls, xlsx.");
     return null;
   }
 
@@ -116,13 +116,13 @@ async function importTable(
 
   const firstField = fieldMetaList.shift();
   if (!firstField) {
-    Toast.error("导入失败，数据表异常");
+    Toast.error("导入失败，数据表异常. Empty excel sheet supplied.");
     return;
   }
 
   const firstFieldType = firstField.type;
   if (firstFieldType !== FieldType.Text) {
-    Toast.error("导入失败，请将第一列字段类型修改为多行文本后再进行导入");
+    Toast.error("导入失败，请将第一列字段类型修改为多行文本后再进行导入. Failed to start, the first column of the Base table should be type Text.");
     return;
   }
 
@@ -200,7 +200,7 @@ The rest: FieldType.Text
     }),
   ]);
 
-  Toast.success("导入成功");
+  Toast.success("导入成功. Success.");
 }
 
 export function App() {
@@ -255,7 +255,7 @@ export function App() {
   const selectFile = useCallback((files: File[]) => {
     readExcel(files).then((data) => {
       if (!data) {
-        Toast.warning("解析文件失败");
+        Toast.warning("解析文件失败. Failed to read file.");
       }
       setDataInfo(data);
       setSelected(true);
@@ -273,7 +273,7 @@ export function App() {
   if (!activeTableInfo) {
     return (
       <div className="error">
-        <span>请打开一个数据表的表格视图</span>
+        <span>请打开一个数据表的表格视图. Make sure your current Base table is open.</span>
       </div>
     );
   }
@@ -282,7 +282,7 @@ export function App() {
     return (
       <div className="importing">
         <Spin size={"large"}></Spin>
-        <span>导入中</span>
+        <span>导入中. Running...</span>
       </div>
     );
   }
@@ -298,18 +298,18 @@ export function App() {
           <Upload
             draggable={true}
             accept=".xls,.xlsx"
-            dragMainText={"点击上传文件或拖拽文件到这里"}
-            dragSubText="支持 xls、xlsx 类型文件"
+            dragMainText={"点击上传文件或拖拽文件到这里. Please attach file here."}
+            dragSubText="类型文件 File types: xls、xlsx "
             onFileChange={selectFile}
           ></Upload>
         </div>
       )}
       {selected && dataInfo && (
         <div className="main">
-          <div className="previewText">表格数据预览</div>
+          <div className="previewText">表格数据预览 Excel preview</div>
           {selectVisible && (
             <div>
-              <Text className="selectTableText">选择要导入的表</Text>
+              <Text className="selectTableText">选择要导入的表 Select sheet to input:</Text>
               <Select
                 defaultValue={dataInfo.sheets[0].name}
                 style={{ width: 120 }}
@@ -338,10 +338,10 @@ export function App() {
                 setDataInfo(null);
               }}
             >
-              重新选择文件
+              重新选择文件 Choose new file
             </Button>
             <Popconfirm
-              title="确定要导入吗？"
+              title="确定要导入吗？Confirm start?"
               content={
                 <div>
                   导入后将覆盖{" "}
@@ -362,7 +362,7 @@ export function App() {
                 });
               }}
             >
-              <Button>导入</Button>
+              <Button>导入 Start</Button>
             </Popconfirm>
           </div>
         </div>
